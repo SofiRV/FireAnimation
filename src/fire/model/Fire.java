@@ -11,6 +11,7 @@ public class Fire implements Runnable{
 
     public Fire(){
         fireThread=new Thread(this);
+        fireThread.start();
     }
 
     @Override

@@ -33,8 +33,8 @@ public class FireColorPalette {
             float incrementA=(upper.color.getAlpha()-lower.color.getAlpha())/(float) deltaTemperatures;
 
             float r=lower.color.getRed();
-            float b=lower.color.getBlue();
             float g=lower.color.getGreen();
+            float b=lower.color.getBlue();
             float a=lower.color.getAlpha();
 
             for (int t = lower.temperature; t <= upper.temperature ; t++) {
