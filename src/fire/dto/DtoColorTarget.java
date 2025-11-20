@@ -1,7 +1,6 @@
 package fire.dto;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class DtoColorTarget {
     public final int temperature;

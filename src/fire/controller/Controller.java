@@ -8,7 +8,12 @@ public class Controller {
     private final Model model;
 
     public Controller() {
-        this.view =new View(this);
-        this.model =new Model(this);
+        this.model=new Model(this);
+        this.view=new View(this);
+
+    }
+    public int[][] updateFire(){
+
+        return model.getTemperatures();
     }
 }

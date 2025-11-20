@@ -36,5 +36,14 @@ public class View extends JFrame {
         add(content);
         setLocationRelativeTo(null);
         setVisible(true);
+        viewer.startViewer();
+    }
+
+    public int[][] updateFire(){
+        return controller.updateFire();
+    }
+
+    public Controller getController() {
+        return controller;
     }
 }

@@ -4,52 +4,56 @@ import fire.dto.DtoColorTarget;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class FireColorPalette {
-    private final ArrayList<Color> colors;
+    private final Color[] colors;
+    private ArrayList<DtoColorTarget> targets;
 
     public FireColorPalette(){
-        colors=new ArrayList<>(1024);
+        colors=new Color[1024];
+        targets=new ArrayList<>();
 
-        ArrayList<DtoColorTarget> targets=new ArrayList<>();
-        targets.add(new DtoColorTarget(0,new Color(0,0,0,0)));
-        targets.add(new DtoColorTarget(200,new Color(100,0,50,150)));
-        targets.add(new DtoColorTarget(400,new Color(200,50,150,180)));
-        targets.add(new DtoColorTarget(700,new Color(255,150,200,220)));
-        targets.add(new DtoColorTarget(1023,new Color(255,255,255,255)));
+        targets.add(new DtoColorTarget(0,    new Color(0,0,0,0)));
+        targets.add(new DtoColorTarget(20,   new Color(100,0,50,100)));
+        targets.add(new DtoColorTarget(1023, new Color(255,150,200,255)));
 
-        Collections.sort(targets, Comparator.comparingInt(t->t.temperature));
+        targets.sort(Comparator.comparingInt(t -> t.temperature));
 
-        for (int i = 0; i < targets.size()-1; i++) {
+        if (targets.get(0).temperature!=0) {
+            targets.add(0, new DtoColorTarget(0, new Color(0,0,0,0)));
+        }
+
+        if (targets.get(targets.size()-1).temperature!=1023) {
+            targets.add(new DtoColorTarget(1023, new Color(255,255,255,255)));
+        }
+
+        for (int i=0; i<targets.size()-1; i++) {
             DtoColorTarget lower=targets.get(i);
             DtoColorTarget upper=targets.get(i+1);
 
-            int deltaTemperatures= upper.temperature- lower.temperature;
-            float incrementR=(upper.color.getRed()-lower.color.getRed())/(float) deltaTemperatures;
-            float incrementG=(upper.color.getGreen()-lower.color.getGreen())/(float) deltaTemperatures;
-            float incrementB=(upper.color.getBlue()-lower.color.getBlue())/(float) deltaTemperatures;
-            float incrementA=(upper.color.getAlpha()-lower.color.getAlpha())/(float) deltaTemperatures;
+            int delta=upper.temperature-lower.temperature;
 
-            float r=lower.color.getRed();
-            float g=lower.color.getGreen();
-            float b=lower.color.getBlue();
-            float a=lower.color.getAlpha();
+            float incR=(upper.color.getRed()-lower.color.getRed())/(float) delta;
+            float incG=(upper.color.getGreen()-lower.color.getGreen())/(float) delta;
+            float incB=(upper.color.getBlue()-lower.color.getBlue())/(float) delta;
+            float incA=(upper.color.getAlpha()-lower.color.getAlpha())/(float) delta;
 
-            for (int t = lower.temperature; t <= upper.temperature ; t++) {
-                colors.add(new Color(Math.round(r),Math.round(g),Math.round(b),Math.round(a)));
-                r+=incrementR;
-                g+=incrementG;
-                b+=incrementB;
-                a+=incrementA;
+            for (int t=0; t<=delta; t++) {
+                int index=lower.temperature+t;
+
+                colors[index]=new Color(
+                        Math.round(lower.color.getRed()+incR * t),
+                        Math.round(lower.color.getGreen()+incG * t),
+                        Math.round(lower.color.getBlue()+incB * t),
+                        Math.round(lower.color.getAlpha()+incA * t)
+                );
             }
         }
-        while (colors.size()<1024){
-            colors.add(new Color(255,255,255,255));
-        }
     }
-    public ArrayList<Color> getColors(){
+
+    public Color[] getColors(){
         return colors;
     }
 }
+
