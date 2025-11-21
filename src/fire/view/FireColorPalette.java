@@ -14,9 +14,31 @@ public class FireColorPalette {
         colors=new Color[1024];
         targets=new ArrayList<>();
 
+        /*
         targets.add(new DtoColorTarget(0,    new Color(0,0,0,0)));
-        targets.add(new DtoColorTarget(20,   new Color(100,0,50,100)));
-        targets.add(new DtoColorTarget(1023, new Color(255,150,200,255)));
+        targets.add(new DtoColorTarget(64,    new Color(160,0,0,100)));
+        targets.add(new DtoColorTarget(128,    new Color(196,72,0,140)));
+        targets.add(new DtoColorTarget(192,    new Color(232,143,0,180)));
+        targets.add(new DtoColorTarget(255,    new Color(255,220,71,220)));
+
+        targets.add(new DtoColorTarget(0,    new Color(0,0,0,0)));
+        targets.add(new DtoColorTarget(15,   new Color(100,0,50,100)));
+        targets.add(new DtoColorTarget(64,    new Color(145, 7, 76,140)));
+        targets.add(new DtoColorTarget(255,    new Color(191, 29, 110,180)));
+        targets.add(new DtoColorTarget(1023, new Color(252, 136, 194,220)));
+
+        targets.add(new DtoColorTarget(0,    new Color(0, 0, 0, 0)));
+        targets.add(new DtoColorTarget(64,   new Color(220, 80, 140, 100)));
+        targets.add(new DtoColorTarget(128,  new Color(240, 120, 170, 140)));
+        targets.add(new DtoColorTarget(192,  new Color(255, 160, 200, 180)));
+        targets.add(new DtoColorTarget(255,  new Color(255, 200, 230, 220)));
+        */
+        targets.add(new DtoColorTarget(0,    new Color(0, 0, 0, 0)));
+        targets.add(new DtoColorTarget(64,   new Color(230, 0, 115, 100)));
+        targets.add(new DtoColorTarget(128,  new Color(245, 40, 150, 140)));
+        targets.add(new DtoColorTarget(192,  new Color(255, 90, 185, 180)));
+        targets.add(new DtoColorTarget(255,  new Color(255, 150, 220, 220)));
+
 
         targets.sort(Comparator.comparingInt(t -> t.temperature));
 

@@ -11,10 +11,9 @@ public class Viewer extends Canvas implements Runnable{
     private final View view;
     private final FireView fireView;
     private BufferedImage fireplace;
-    private BufferedImage buffer;
     private Thread viewerThread;
-    private final int fireX= 290;
-    private final int fireY=230;
+    private final int fireX= 300;
+    private final int fireY=245;
     private final int fireWidth=200;
     private final int fireHeight=200;
     private int[][] latestTemps;
