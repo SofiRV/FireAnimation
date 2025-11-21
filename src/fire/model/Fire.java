@@ -5,11 +5,11 @@ import java.util.Random;
 public class Fire implements Runnable{
     int fireWidth=200;
     int fireHeight=200;
-    int[][] temperatures=new int[fireHeight][fireWidth];//[alto][ancho]
+    int[][] temperatures=new int[fireHeight][fireWidth];
     int[][] newTemperatures=new int[fireHeight][fireWidth];
     private Thread fireThread;
     private boolean running=true;
-    double decayingfactor=0.985;
+    double decayingfactor=0.975;
 
 
     public Fire(){}
@@ -19,24 +19,10 @@ public class Fire implements Runnable{
         Random random=new Random();
         double sparkPercentage=0.10;
         while(running){
-            /*
-            for (int j=0; j<fireWidth; j++) {
-                int value=temperatures[fireHeight-1][j];
-                newTemperatures[fireHeight-1][j]=value;
-            }
-
-             */
 
             generateSpark(random,sparkPercentage);
             spreadHeat();
             coolFire(random);
-
-            /*
-            int[][] temp=temperatures;
-            temperatures=newTemperatures;
-            newTemperatures=temp;
-
-             */
 
             try {
                 Thread.sleep(10);
@@ -64,40 +50,32 @@ public class Fire implements Runnable{
             }
         }
     }
+
     public void spreadHeat(){
-        for (int i=fireHeight-2; i>=0 ; i--) {
-            for (int j=0; j<fireWidth; j++) {
-                double heatFromDown=0;
-                double heatFromRight=0;
-                double heatFromLeft=0;
+        for (int i = fireHeight - 2; i >= 0; i--) {
+            for (int j = 0; j < fireWidth; j++) {
 
-                if (j!=fireHeight -1) {
-                    heatFromDown=(temperatures[j+1][i] * 0.5);
-                }
-                if (i!=0) {
-                    heatFromLeft=(temperatures[j][i-1] * 0.25);
-                }
-                if (i!=fireWidth -1) {
-                    heatFromRight=(temperatures[j][i+1] * 0.25);
+                double heatFromDown = temperatures[i + 1][j] * 0.5;
+
+                double heatFromLeft = 0;
+                if (j > 0) {
+                    heatFromLeft = temperatures[i][j - 1] * 0.25;
                 }
 
-                temperatures[j][i]=(int) Math.round(
-                        (heatFromDown+heatFromRight+heatFromLeft) * decayingfactor
+                double heatFromRight = 0;
+                if (j < fireWidth - 1) {
+                    heatFromRight = temperatures[i][j + 1] * 0.25;
+                }
+
+                temperatures[i][j] = (int) Math.round(
+                        (heatFromDown + heatFromLeft + heatFromRight) * decayingfactor
                 );
             }
         }
     }
 
+
     public void coolFire(Random random){
-        double coolPercentage=0.05;
-        int maxCool=50;
-//        for (int i=0; i<temperatures.length/2; i++) {
-//            for (int j=0; j<temperatures[0].length; j++) {
-//                if (random.nextDouble()<coolPercentage) {
-//                    newTemperatures[i][j]=Math.max(0, newTemperatures[i][j]-random.nextInt(maxCool));
-//                }
-//            }
-//        }
         for (int i = 0; i <fireWidth ; i++) {
             temperatures[fireHeight-1][i]=(int) Math.round(temperatures[fireHeight-1][i]*0.8);
         }

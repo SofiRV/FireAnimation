@@ -34,10 +34,10 @@ public class FireColorPalette {
         targets.add(new DtoColorTarget(255,  new Color(255, 200, 230, 220)));
         */
         targets.add(new DtoColorTarget(0,    new Color(0, 0, 0, 0)));
-        targets.add(new DtoColorTarget(64,   new Color(230, 0, 115, 100)));
-        targets.add(new DtoColorTarget(128,  new Color(245, 40, 150, 140)));
-        targets.add(new DtoColorTarget(192,  new Color(255, 90, 185, 180)));
-        targets.add(new DtoColorTarget(255,  new Color(255, 150, 220, 220)));
+        targets.add(new DtoColorTarget(64,   new Color(230, 0, 115, 80)));
+        targets.add(new DtoColorTarget(128,  new Color(245, 40, 150, 120)));
+        targets.add(new DtoColorTarget(192,  new Color(255, 90, 185, 160)));
+        targets.add(new DtoColorTarget(255,  new Color(255, 150, 220, 200)));
 
 
         targets.sort(Comparator.comparingInt(t -> t.temperature));
