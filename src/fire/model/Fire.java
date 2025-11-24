@@ -3,13 +3,12 @@ package fire.model;
 import java.util.Random;
 
 public class Fire implements Runnable{
-    int fireWidth=200;
-    int fireHeight=200;
+    int fireWidth=250;
+    int fireHeight=250;
     int[][] temperatures=new int[fireHeight][fireWidth];
-    int[][] newTemperatures=new int[fireHeight][fireWidth];
     private Thread fireThread;
     private boolean running=true;
-    double decayingfactor=0.975;
+    double decayingfactor=0.977;
 
 
     public Fire(){}
@@ -25,7 +24,7 @@ public class Fire implements Runnable{
             coolFire(random);
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

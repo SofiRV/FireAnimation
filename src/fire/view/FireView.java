@@ -1,6 +1,9 @@
 package fire.view;
 
+import fire.dto.DtoColorTarget;
+
 import java.awt.*;
+import java.util.ArrayList;
 
 public class FireView {
     private final FireColorPalette colors;
@@ -8,10 +11,10 @@ public class FireView {
     private final int height;
     private int[][] temperatures;
 
-    public FireView(int width, int height){
+    public FireView(int width, int height, FireColorPalette colorPalette){
         this.width=width;
         this.height=height;
-        this.colors=new FireColorPalette();
+        this.colors=colorPalette;
         this.temperatures=new int[height][width];
     }
 
@@ -35,5 +38,6 @@ public class FireView {
             }
         }
     }
+
 }
 

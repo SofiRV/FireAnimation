@@ -10,9 +10,9 @@ public class FireColorPalette {
     private final Color[] colors;
     private ArrayList<DtoColorTarget> targets;
 
-    public FireColorPalette(){
+    public FireColorPalette(ArrayList<DtoColorTarget> targets){
         colors=new Color[1024];
-        targets=new ArrayList<>();
+        this.targets=targets;
 
         /*
         targets.add(new DtoColorTarget(0,    new Color(0,0,0,0)));
@@ -33,11 +33,6 @@ public class FireColorPalette {
         targets.add(new DtoColorTarget(192,  new Color(255, 160, 200, 180)));
         targets.add(new DtoColorTarget(255,  new Color(255, 200, 230, 220)));
         */
-        targets.add(new DtoColorTarget(0,    new Color(0, 0, 0, 0)));
-        targets.add(new DtoColorTarget(64,   new Color(230, 0, 115, 80)));
-        targets.add(new DtoColorTarget(128,  new Color(245, 40, 150, 120)));
-        targets.add(new DtoColorTarget(192,  new Color(255, 90, 185, 160)));
-        targets.add(new DtoColorTarget(255,  new Color(255, 150, 220, 200)));
 
 
         targets.sort(Comparator.comparingInt(t -> t.temperature));
