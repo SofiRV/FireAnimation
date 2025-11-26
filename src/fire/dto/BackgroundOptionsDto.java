@@ -1,10 +1,10 @@
 package fire.dto;
 
 public enum BackgroundOptionsDto {
-    BACKGROUND_1("Option #1"),
-    BACKGROUND_2("Option #2"),
-    BACKGROUND_3("Option #3"),
-    BACKGROUND_4("Option #4");
+    BACKGROUND_1("Witch house"),
+    BACKGROUND_2("Modern fireplace"),
+    BACKGROUND_3("Medieval tavern"),
+    BACKGROUND_4("Ice castle");
 
     private final String displayName;
 
